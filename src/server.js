@@ -1,6 +1,9 @@
+'use strict';
+
 const express = require('express');
 const ctj = require('csvtojson');
 const utility = require('./utility');
+const routes = require('./router');
 
 const dataFilePath = './data/data.csv';
 
@@ -8,17 +11,13 @@ let app = express();
 let dataJson;
 
 ((async () => {
+    console.log('Loading data from %s.', dataFilePath);
+
     dataJson = await ctj().fromFile(dataFilePath);
+    
+    console.log("Rought data size in memory: %s", utility.roughSizeOfObject(dataJson));
 
-    console.log(utility.roughSizeOfObject(dataJson));
-
-    app.get('/people-like-you', function(request, response) {
-        response.send(dataJson[0]);
-    });
-
-    app.get('/*', function(request, response) {
-        response.redirect('/people-like-you');
-    });
+    routes(app, dataJson);
 
     let server = app.listen(8081, function() {
         let host = server.address().address;
