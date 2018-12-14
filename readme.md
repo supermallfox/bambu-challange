@@ -8,9 +8,14 @@
     diff_rate = abslute_value( input_value - record_value ) / input_value<br />
     similarity = 1 - diff_rate<br />
     confidence_score = similarity * weight
-    - The overall confidence score = sum of confidence scores of all input parameters
+    - The overall confidence score = sum of confidence scores of all input parameters (with 2 decimal places)
 4) I only added some unit test cases at the end, it was not a proper way of doing it, I'm sorry about it. Mainly it was because I was busy with some othe work and only kicked it off yesterday, I had to rush it. In addition, by just running the service locally (and as the only developer), it was easier to do any testing by just printing everything out. 
-5) If you need any additional info, kindly let me know. :)
+5) Regarding the returned result list, now I set up 2 rules: 
+    - Only records with confidence score >= 0.4 are displayed. 
+    or 
+    - At most 5000 records are returned. 
+  These numbers are set up in /properties/app.properties. 
+6) If you need any additional info, kindly let me know. :)
 
 ## Below is the original readme: 
 # BAMBU Backend Engineer Test
