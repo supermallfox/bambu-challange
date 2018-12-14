@@ -1,3 +1,18 @@
+
+##Note from Yuanpeng: 
+1) This has been done based on my limited NodeJS knowledge, so please have mercy when reviewing it... :)
+2) It has been deployed to Google Cloud, please try it out on: https://bambu-challenge-yp.appspot.com/
+3) Regarding the algorithm to calculate the confidence score for a record, I was not sure what should be a most accurate one, so I just made one by myself. It is as below: 
+- It treats all input parameters equally, meaning, if "?age=23&latitude=40.71667&longitude=19.56667&monthlyIncome=5500&experienced=false" is input, and there are 5 of them, each of them would get a weight of 1 / 5 = 0.2; If it is "?age=23&monthlyIncome=5500", each of them would get a weight of 1 / 2 = 0.5. 
+- For each input parameters, it calculates the confidence score as below: 
+diff_rate = abslute_value( input_value - record_value ) / input_value
+similarity = 1 - diff_rate
+confidence_score = similarity * weight
+- The overall confidence score = sum of confidence scores of all input parameters
+4) I only added some unit test cases at the end, it was not a proper way of doing it, I'm sorry about it. Mainly it was because I was busy with some othe work and only kicked it off yesterday, I had to rush it. In addition, by just running the service locally (and as the only developer), it was easier to do any testing by just printing everything out. 
+5) If you need any additional info, kindly let me know. :)
+
+## Below is the original readme: 
 # BAMBU Backend Engineer Test
 
 With a data in this repo, build an API that sends 10 potential investor similar with a person described in the query parameters.
