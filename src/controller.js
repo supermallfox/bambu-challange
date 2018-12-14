@@ -4,8 +4,8 @@ const url = require('url');
 const cal = require('./calculation');
 
 const prop = require('properties-reader')('./properties/app.properties');
-const bottomScore = prop.get('app.lowestScoreToShow') ? prop.get('app.lowestScoreToShow') : 0.4;
-const numberOfResults = prop.get('app.maxNumberOfResultsReturned') ? prop.get('app.maxNumberOfResultsReturned') : 1000;
+const bottomScore = prop.get('app.lowestScoreToShow') ? prop.get('app.lowestScoreToShow') : 0.4; //Default is 0.4
+const numberOfResults = prop.get('app.maxNumberOfResultsReturned') ? prop.get('app.maxNumberOfResultsReturned') : 5000; //Default is 5000
 
 module.exports = {
 
