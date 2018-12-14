@@ -15,7 +15,7 @@ let dataJson;
 
     dataJson = await ctj().fromFile(dataFilePath);
     
-    console.log("Rought data size in memory: %s", utility.roughSizeOfObject(dataJson));
+    //console.log("Rought data size in memory: %s", utility.roughSizeOfObject(dataJson));
 
     routes(app, dataJson);
 
@@ -26,5 +26,5 @@ let dataJson;
         console.log("Application started at http://%s:%s", host, port);
     });
 
-})()).catch(console.error);
+})()).catch(console.error)
 

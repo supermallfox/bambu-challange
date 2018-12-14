@@ -14,3 +14,7 @@
 # [START gae_quickstart_yaml]
 runtime: nodejs10
 # [END gae_quickstart_yaml]
+
+env_variables:
+  GAE_MEMORY_MB: 4096
+  PORT: 8080

@@ -6,13 +6,13 @@ const cal = require('./calculation');
 module.exports = {
 
     defaultGet: function(request, response) {
-        response.redirect(url.format({
-            pathname: '/people-like-you',
-            query: request.query
-        }));
+        console.log('Send to default page. ');
+        response.sendFile('views/default.html', {root: __dirname});
     }, 
 
     searchPpl: function(dataJson, request, response) {
+        console.log('Start processing data');
+
         let resultList = [];
         for (let index = 0; index < dataJson.length; index++) {
             let score = cal.calculateConfidence(dataJson[index],  
