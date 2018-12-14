@@ -4,7 +4,7 @@
 2) It has been deployed to Google Cloud, please try it out on: https://bambu-challenge-yp.appspot.com/
 3) Regarding the algorithm to calculate the confidence score for a record, I was not sure what should be a most accurate one, so I just made one by myself. It is as below: 
     - It treats all input parameters equally, meaning, if "?age=23&latitude=40.71667&longitude=19.56667&monthlyIncome=5500&experienced=false" is input, and there are 5 of them, each of them would get a weight of 1 / 5 = 0.2; If it is "?age=23&monthlyIncome=5500", each of them would get a weight of 1 / 2 = 0.5. 
-    - For each input parameters, it calculates the confidence score as below: 
+    - For each input parameters, it calculates the confidence score as below: <br />
     diff_rate = abslute_value( input_value - record_value ) / input_value<br />
     similarity = 1 - diff_rate<br />
     confidence_score = similarity * weight
