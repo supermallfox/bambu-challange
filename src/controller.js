@@ -3,6 +3,10 @@
 const url = require('url');
 const cal = require('./calculation');
 
+const prop = require('properties-reader')('./properties/app.properties');
+const bottomScore = prop.get('app.lowestScoreToShow') ? prop.get('app.lowestScoreToShow') : 0.4;
+const numberOfResults = prop.get('app.maxNumberOfResultsReturned') ? prop.get('app.maxNumberOfResultsReturned') : 1000;
+
 module.exports = {
 
     defaultGet: function(request, response) {
@@ -12,6 +16,8 @@ module.exports = {
 
     searchPpl: function(dataJson, request, response) {
         console.log('Start processing data');
+        console.log('Lowest score to show: ' + bottomScore);
+        console.log('Max results to return: ' + numberOfResults);
 
         let resultList = [];
         for (let index = 0; index < dataJson.length; index++) {
@@ -22,7 +28,7 @@ module.exports = {
                 request.query.monthlyIncome, 
                 request.query.experienced);
 
-            if (score >= 0.4) {
+            if (score >= bottomScore) {
                 resultList.push({
                     'name': dataJson[index]['name'],
                     'age': Number(dataJson[index]['age']),
@@ -36,6 +42,7 @@ module.exports = {
         }
 
         cal.sortDataOnScoreDesc(resultList);
+        resultList = resultList.slice(0, numberOfResults);
 
         response.send({
             'peopleLikeYou': resultList
